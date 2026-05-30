@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lorivth Equity Firm — Quantitative Trading. Performance-Based.</title>
+<meta name="description" content="Lorivth Equity Firm builds proprietary in-house quantitative systems. We trade the edge — and you only pay us when we make you money.">
+<meta property="og:title" content="Lorivth Equity Firm">
+<meta property="og:description" content="Proprietary quantitative trading. You only pay when we make you money.">
+<meta property="og:image" content="https://media.base44.com/images/public/69e6c9e3e9328af8a3ecc3e5/dd7b069a8_LEFBusinessLogo.PNG">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background:#1a0000;
+    font-family:'Inter', sans-serif;
+    color:#FFD700;
+    overflow-x:hidden;
+  }
+  .serif { font-family:'Playfair Display', serif; }
+
+  /* ===== NAV ===== */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 6vw;
+    background:rgba(26,0,0,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,215,0,0.2);
+  }
+  .nav-brand { display:flex; align-items:center; gap:12px; }
+  .nav-brand img { width:42px; height:42px; border-radius:50%; border:2px solid #FFD700; object-fit:cover; }
+  .nav-brand span { font-family:'Playfair Display',serif; font-weight:900; letter-spacing:3px; font-size:16px; color:#FFD700; }
+  .nav-links { display:flex; gap:28px; }
+  .nav-links a { color:rgba(255,215,0,0.8); text-decoration:none; font-size:14px; letter-spacing:1px; transition:color .2s; }
+  .nav-links a:hover { color:#FFD700; }
+  .nav-cta {
+    background:#FFD700; color:#cc0000; padding:9px 20px; border-radius:4px;
+    font-weight:600; font-size:14px; text-decoration:none; letter-spacing:1px;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .nav-cta:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(255,215,0,0.35); }
+  @media(max-width:780px){ .nav-links{ display:none; } }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:140px 6vw 90px;
+    background:radial-gradient(ellipse at 50% 0%, #FF3333 0%, #cc0000 50%, #990000 100%);
+    position:relative;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:18px;
+    border:2px solid rgba(255,215,0,0.45); pointer-events:none;
+  }
+  .hero-logo {
+    width:130px; height:130px; border-radius:50%; border:3px solid #FFD700;
+    box-shadow:0 0 50px rgba(255,215,0,0.4); margin-bottom:28px; object-fit:cover;
+    animation:glow 3s ease-in-out infinite alternate;
+  }
+  @keyframes glow { from{box-shadow:0 0 30px rgba(255,215,0,0.25);} to{box-shadow:0 0 60px rgba(255,215,0,0.5);} }
+  .hero h1 {
+    font-family:'Playfair Display',serif; font-weight:900;
+    font-size:clamp(34px, 6vw, 64px); color:#FFD700; letter-spacing:6px;
+    text-transform:uppercase; line-height:1.15; text-shadow:0 0 40px rgba(255,215,0,0.4);
+  }
+  .hero .tagline { font-style:italic; color:rgba(255,215,0,0.7); letter-spacing:4px; margin-top:14px; font-size:clamp(12px,2vw,15px); }
+  .hero-divider { width:min(340px,70vw); height:2px; background:linear-gradient(90deg,transparent,#FFD700,transparent); margin:30px auto; }
+  .hero .pitch {
+    font-family:'Playfair Display',serif; font-size:clamp(18px,3vw,26px); font-weight:600;
+    color:#FFD700; max-width:720px; line-height:1.5;
+  }
+  .hero .pitch em { color:#fff; font-style:italic; }
+  .hero-cta-row { display:flex; gap:16px; margin-top:38px; flex-wrap:wrap; justify-content:center; }
+  .btn-primary {
+    background:#FFD700; color:#cc0000; padding:15px 34px; border-radius:5px;
+    font-weight:600; font-size:16px; letter-spacing:1px; text-decoration:none;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(255,215,0,0.4); }
+  .btn-ghost {
+    background:transparent; color:#FFD700; padding:15px 34px; border:2px solid #FFD700;
+    border-radius:5px; font-weight:600; font-size:16px; letter-spacing:1px; text-decoration:none;
+    transition:background .2s, color .2s;
+  }
+  .btn-ghost:hover { background:#FFD700; color:#cc0000; }
+
+  /* ===== SECTION SHELL ===== */
+  section { padding:90px 6vw; }
+  .section-tag { text-align:center; color:rgba(255,215,0,0.6); letter-spacing:5px; font-size:13px; text-transform:uppercase; margin-bottom:12px; }
+  .section-title { text-align:center; font-family:'Playfair Display',serif; font-weight:900; font-size:clamp(26px,4vw,42px); color:#FFD700; letter-spacing:2px; margin-bottom:16px; }
+  .section-sub { text-align:center; max-width:680px; margin:0 auto 50px; color:rgba(255,215,0,0.75); font-size:16px; line-height:1.7; }
+
+  /* WHAT IS LEF */
+  .whatis { background:#1a0000; }
+  .whatis-grid { display:grid; grid-template-columns:1fr 1fr; gap:50px; max-width:1080px; margin:0 auto; align-items:center; }
+  .whatis-text p { color:rgba(255,215,0,0.85); font-size:17px; line-height:1.8; margin-bottom:18px; }
+  .whatis-text strong { color:#fff; }
+  .whatis-card {
+    background:linear-gradient(160deg,#FF3333,#cc0000); border:2px solid #FFD700; border-radius:10px;
+    padding:40px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .whatis-card .big { font-family:'Playfair Display',serif; font-weight:900; font-size:54px; color:#FFD700; line-height:1; }
+  .whatis-card .label { color:rgba(255,255,255,0.85); letter-spacing:2px; font-size:13px; text-transform:uppercase; margin-top:8px; }
+  .whatis-card .rule { width:60%; height:1px; background:rgba(255,215,0,0.4); margin:24px auto; }
+  @media(max-width:780px){ .whatis-grid{ grid-template-columns:1fr; gap:34px; } }
+
+  /* EDGE / FEATURES */
+  .edge { background:radial-gradient(ellipse at 50% 0%, #cc0000, #990000); }
+  .edge .section-tag, .edge .section-title, .edge .section-sub { color:#FFD700; }
+  .edge .section-sub { color:rgba(255,215,0,0.8); }
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; max-width:1080px; margin:0 auto; }
+  .card {
+    background:rgba(26,0,0,0.55); border:1px solid rgba(255,215,0,0.35); border-radius:10px;
+    padding:34px 28px; transition:transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .card:hover { transform:translateY(-6px); border-color:#FFD700; box-shadow:0 16px 40px rgba(0,0,0,0.45); }
+  .card .icon { font-size:30px; margin-bottom:16px; }
+  .card h3 { font-family:'Playfair Display',serif; color:#FFD700; font-size:21px; margin-bottom:10px; letter-spacing:1px; }
+  .card p { color:rgba(255,215,0,0.75); font-size:15px; line-height:1.7; }
+  @media(max-width:780px){ .cards{ grid-template-columns:1fr; } }
+
+  /* HOW IT WORKS */
+  .how { background:#1a0000; }
+  .steps { max-width:820px; margin:0 auto; display:flex; flex-direction:column; gap:8px; }
+  .step { display:flex; gap:24px; align-items:flex-start; padding:26px; border-left:3px solid rgba(255,215,0,0.3); transition:border-color .2s, background .2s; }
+  .step:hover { border-left-color:#FFD700; background:rgba(255,51,51,0.08); }
+  .step-num { font-family:'Playfair Display',serif; font-weight:900; font-size:38px; color:#FF3333; line-height:1; min-width:54px; }
+  .step h4 { font-family:'Playfair Display',serif; color:#FFD700; font-size:20px; margin-bottom:6px; }
+  .step p { color:rgba(255,215,0,0.75); font-size:15px; line-height:1.6; }
+
+  /* PRICING */
+  .pricing { background:radial-gradient(ellipse at 50% 0%, #cc0000, #990000); }
+  .pricing .section-title, .pricing .section-tag { color:#FFD700; }
+  .tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1000px; margin:0 auto 40px; }
+  .tier { background:rgba(26,0,0,0.6); border:1px solid rgba(255,215,0,0.35); border-radius:12px; padding:34px 26px; text-align:center; transition:transform .25s, border-color .25s; }
+  .tier:hover { transform:translateY(-6px); border-color:#FFD700; }
+  .tier.featured { border:2px solid #FFD700; box-shadow:0 0 40px rgba(255,215,0,0.25); position:relative; }
+  .tier.featured::before { content:'MOST POPULAR'; position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:#FFD700; color:#cc0000; font-size:11px; font-weight:600; letter-spacing:1px; padding:4px 14px; border-radius:20px; }
+  .tier h3 { font-family:'Playfair Display',serif; color:#FFD700; font-size:22px; margin-bottom:8px; }
+  .tier .price { font-family:'Playfair Display',serif; font-weight:900; font-size:40px; color:#fff; }
+  .tier .price span { font-size:15px; color:rgba(255,215,0,0.7); font-weight:400; }
+  .tier .rule { width:50%; height:1px; background:rgba(255,215,0,0.3); margin:18px auto; }
+  .tier p { color:rgba(255,215,0,0.75); font-size:14px; line-height:1.6; }
+  .perf-note { max-width:760px; margin:0 auto; text-align:center; background:rgba(26,0,0,0.6); border:1px dashed rgba(255,215,0,0.4); border-radius:10px; padding:26px; }
+  .perf-note h4 { font-family:'Playfair Display',serif; color:#FFD700; font-size:20px; margin-bottom:10px; }
+  .perf-note p { color:rgba(255,215,0,0.8); font-size:15px; line-height:1.7; }
+  @media(max-width:780px){ .tiers{ grid-template-columns:1fr; } }
+
+  /* CTA BAND */
+  .cta-band { background:linear-gradient(160deg,#FF3333,#cc0000); text-align:center; }
+  .cta-band h2 { font-family:'Playfair Display',serif; font-weight:900; font-size:clamp(28px,5vw,46px); color:#FFD700; letter-spacing:2px; margin-bottom:18px; text-shadow:0 0 30px rgba(255,215,0,0.3); }
+  .cta-band p { color:rgba(255,255,255,0.9); font-size:18px; max-width:600px; margin:0 auto 32px; line-height:1.6; }
+
+  /* FOOTER */
+  footer { background:#0d0000; padding:50px 6vw 40px; text-align:center; border-top:1px solid rgba(255,215,0,0.2); }
+  .footer-logo { width:60px; height:60px; border-radius:50%; border:2px solid #FFD700; object-fit:cover; margin-bottom:16px; }
+  footer .firm { font-family:'Playfair Display',serif; color:#FFD700; letter-spacing:4px; font-weight:900; font-size:18px; }
+  footer .legal { color:rgba(255,215,0,0.5); font-size:12px; line-height:1.8; margin-top:16px; max-width:640px; margin-left:auto; margin-right:auto; }
+  footer a { color:rgba(255,215,0,0.7); text-decoration:none; }
+  footer a:hover { color:#FFD700; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <img src="https://media.base44.com/images/public/69e6c9e3e9328af8a3ecc3e5/dd7b069a8_LEFBusinessLogo.PNG" alt="LEF">
+    <span>LORIVTH EQUITY FIRM</span>
+  </div>
+  <div class="nav-links">
+    <a href="#what">What We Do</a>
+    <a href="#edge">The Edge</a>
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+  <a href="#contact" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <img class="hero-logo" src="https://media.base44.com/images/public/69e6c9e3e9328af8a3ecc3e5/dd7b069a8_LEFBusinessLogo.PNG" alt="Lorivth Equity Firm">
+  <h1>Lorivth Equity Firm</h1>
+  <div class="tagline">QUANTITATIVE TRADING · PERFORMANCE-BASED</div>
+  <div class="hero-divider"></div>
+  <p class="pitch">We build proprietary in-house quantitative systems that give us an edge in the market — meaning <em>you only pay us when we make you money.</em></p>
+  <div class="hero-cta-row">
+    <a href="#contact" class="btn-primary">Start a Conversation</a>
+    <a href="#how" class="btn-ghost">See How It Works</a>
+  </div>
+</header>
+
+<!-- WHAT IS LEF -->
+<section class="whatis" id="what">
+  <div class="section-tag">Who We Are</div>
+  <h2 class="section-title">What Is Lorivth Equity Firm?</h2>
+  <div class="whatis-grid">
+    <div class="whatis-text">
+      <p>Lorivth Equity Firm is a <strong>quantitative trading firm</strong> built on proprietary, in-house systems developed over years of real market work — not borrowed strategies, not recycled indicators.</p>
+      <p>Our models read the market through our own framework of structure, liquidity, and momentum. That edge is what lets us operate on a simple promise: <strong>we win when you win.</strong></p>
+      <p>No retainers that drain you while you wait. No vague "trust us." Our performance-fee model means our incentives are aligned with yours from day one.</p>
+    </div>
+    <div class="whatis-card">
+      <div class="big">7.5+</div>
+      <div class="label">Years of System Development</div>
+      <div class="rule"></div>
+      <div class="big">$1M+</div>
+      <div class="label">In Proven Gains</div>
+      <div class="rule"></div>
+      <div class="big">0%</div>
+      <div class="label">Fees On Losses — Ever</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE EDGE -->
+<section class="edge" id="edge">
+  <div class="section-tag">Our Advantage</div>
+  <h2 class="section-title">The LEF Edge</h2>
+  <p class="section-sub">Most firms sell access to the same tools everyone else has. We built our own.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="icon">⚙️</div>
+      <h3>Proprietary Systems</h3>
+      <p>In-house quantitative models built from the ground up — refined across years and thousands of market conditions, not pulled off a shelf.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🎯</div>
+      <h3>Performance-Aligned</h3>
+      <p>You only pay when we generate profit. No fee on losses, ever. Our success is mathematically tied to yours.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔒</div>
+      <h3>Disciplined & Risk-First</h3>
+      <p>Every position runs through strict risk controls. Capital preservation isn't an afterthought — it's the foundation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-tag">The Process</div>
+  <h2 class="section-title">How It Works</h2>
+  <p class="section-sub">Simple, transparent, and built around your interests.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div><h4>Reach Out</h4><p>Start a conversation. Tell us your goals and where you stand. No pressure, no obligation.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div><h4>We Align</h4><p>We walk you through how the system works, the performance-fee structure, and what to expect — clearly and honestly.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div><h4>We Trade the Edge</h4><p>Our proprietary systems go to work. You stay informed with transparent reporting along the way.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div><h4>You Pay On Profit</h4><p>Fees apply only to gains, tiered to performance. If we don't make you money, you don't pay a performance fee. Period.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-tag">Engagement Options</div>
+  <h2 class="section-title">Ways to Work With Us</h2>
+  <div class="tiers">
+    <div class="tier">
+      <h3>Consultation</h3>
+      <div class="price">$50</div>
+      <div class="rule"></div>
+      <p>A focused session to understand your situation and whether LEF is the right fit. No commitment.</p>
+    </div>
+    <div class="tier featured">
+      <h3>Standard</h3>
+      <div class="price">$200<span>/mo</span></div>
+      <div class="rule"></div>
+      <p>Ongoing access to LEF systems and reporting, plus our performance-aligned trading.</p>
+    </div>
+    <div class="tier">
+      <h3>Priority</h3>
+      <div class="price">$1,000<span>/mo</span></div>
+      <div class="rule"></div>
+      <p>Premium tier for serious capital — priority handling, deeper reporting, and direct access.</p>
+    </div>
+  </div>
+  <div class="perf-note">
+    <h4>The Performance Fee — Tiered to Results</h4>
+    <p>You only pay on profit. Fees scale with how well we perform for you — and there is <strong>never a fee on a losing period.</strong> Our incentive is simple: grow your account, or we don't get paid.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band" id="contact">
+  <h2>Ready to See the Edge?</h2>
+  <p>Reach out today. We'll show you exactly how it works — and if it's not a fit, no hard feelings.</p>
+  <a href="mailto:khaliar@lefirm.app?subject=I'm%20interested%20in%20Lorivth%20Equity%20Firm" class="btn-primary">Contact Lorivth Equity Firm</a>
+</section>
+
+<footer>
+  <img class="footer-logo" src="https://media.base44.com/images/public/69e6c9e3e9328af8a3ecc3e5/dd7b069a8_LEFBusinessLogo.PNG" alt="LEF">
+  <div class="firm">LORIVTH EQUITY FIRM</div>
+  <div class="legal">
+    © 2026 Lorivth Equity Firm. All rights reserved.<br>
+    Contact: <a href="mailto:khaliar@lefirm.app">khaliar@lefirm.app</a><br><br>
+    Trading involves risk. Past performance is not indicative of future results. Lorivth Equity Firm does not guarantee profits. All engagements are subject to applicable terms and disclosures.
+  </div>
+</footer>
+
+</body>
+</html>
